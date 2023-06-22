@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
+
+//성장의 각단계별로 보기편하게 관리하기 위해 만들어 두었습니다.
 [EnumToggleButtons]
 public enum Phase{
     StartPhase,
@@ -13,6 +14,10 @@ public enum Phase{
 }
 public class Crop : MonoBehaviour
 {
+    /*
+    모든 원본데이터는 CropData라는 데이터 컨테이너에셋에서 보관하고있습니다.
+    이를 Get을 통해 읽기전용으로 보호되고 있으므로, 단순히 읽을수만있습니다.
+    */
     public CropData cropData;
     public int curDay;
     private int startDay;
@@ -25,10 +30,12 @@ public class Crop : MonoBehaviour
     Sprite overSprite;
     
     private void OnEnable() {
+        //GameMager가 가지고 있는 이벤트함수인 DayCheck에 CheckDay 함수를 리스너로 등록합니다.
         GameManager.DayCheck += CheckDay;
     }
 
     private void OnDisable() {
+        //GameMager가 가지고 있는 이벤트함수인 DayCheck에 리스너로 등록된 CheckDay 함수를 제거합니다.
         GameManager.DayCheck -= CheckDay;
     }
     
@@ -36,14 +43,21 @@ public class Crop : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Start(){
+        //데이터에셋이 가지고있는 스프라이트 정보를 읽어옵니다.
         startSprite = cropData.StartStatus.phaseSprite;
         secondSprite = cropData.SecondStatus.phaseSprite;
         goalSprite = cropData.GoalStatus.phaseSprite;
         overSprite = cropData.OverStatus.phaseSprite;
-        ResetChildObject();
-        startDay = GameManager.Instance.Day;
-        spriteRenderer.sprite = startSprite;
         
+        //혹시 잘못된 Child가 있을수 있으므로 초기화 해줍니다.
+        ResetChildObject();
+
+        //인스턴스가 생성된 시기를 저장합니다. 이를 기준으로 날짜를 체크합니다.
+        startDay = GameManager.Instance.Day;
+
+        //지금은 단순히 생성이지만, 작물을 옮기는 기능을 넣게되면, 모습을 초기화하면 안되므로, 체크데이를 통해 성장단계를 확인합니다.
+        //이를통해 현재 상태에 맞는 스프라이트를 적용시킵니다.
+        CheckDay();
     }
 
     //작물이 심어진 이후 며칠이 지났는지 확인합니다.
@@ -79,7 +93,7 @@ public class Crop : MonoBehaviour
         }
     }
 
-    //성장 단계에 따라 보이는 오브젝트를 변경합니다.
+    //성장 단계에 따라 보이는 스프라이트를 변경합니다.
     public void PharseChange(){
         switch(phase){
             case (Phase.StartPhase) :
