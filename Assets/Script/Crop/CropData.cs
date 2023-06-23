@@ -154,5 +154,4 @@ public class PhaseStatus{
     [PreviewField(80, ObjectFieldAlignment.Center)]
     [ShowIf("isDropCrop")]
     public GameObject[] dropPrefab;
-
 }

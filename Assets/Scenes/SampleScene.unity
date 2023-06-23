@@ -29076,10 +29076,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974310098}
-  - component: {fileID: 974310099}
   - component: {fileID: 974310100}
   - component: {fileID: 974310101}
   - component: {fileID: 974310102}
+  - component: {fileID: 974310104}
+  - component: {fileID: 974310103}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -29105,22 +29106,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &974310099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974310097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0128cceb79e804d3c98ceeaa51de1cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemap: {fileID: 320210792}
-  moveSpeed: 1
-  mainCamera: {fileID: 519420031}
-  playerCharactor: {fileID: 786527809}
 --- !u!114 &974310100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29148,7 +29133,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974310099}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
         m_MethodName: MoveInput
         m_Mode: 0
@@ -29214,6 +29199,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &974310103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974310097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27421c7d589114bf1a0ccc428050974e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+--- !u!114 &974310104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974310097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edbac97c4978486f9854c3e322847a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateInt: 1
 --- !u!1 &1106161834
 GameObject:
   m_ObjectHideFlags: 0
@@ -30111,6 +30122,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8244478993903292615, guid: 9cb9c1348091c42cd9b69d74bdf97b90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 680664395, guid: c1f7f234186624b7d8df6ab3ee19e650, type: 3}
     - target: {fileID: 8244478993903292617, guid: 9cb9c1348091c42cd9b69d74bdf97b90, type: 3}
       propertyPath: m_Name
       value: WaterMelon
