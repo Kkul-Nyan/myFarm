@@ -20,7 +20,7 @@ public class CropData : ScriptableObject
     [TabGroup("Info")]
     [PreviewField(80, ObjectFieldAlignment.Center)]
     [Tooltip("씨앗아이탬의 모습입니다.")]
-    private Sprite seedSprite;
+    public Sprite seedSprite;
     
     
     [TabGroup("Info")]
@@ -58,8 +58,6 @@ public class CropData : ScriptableObject
     [Tooltip("농작물 첫번쨰 단계입니다.")]
     [HideReferenceObjectPicker]
     public PhaseStatus startStatus = new PhaseStatus();
-
-  
 
     [TabGroup("두번째")]
     [Tooltip("농작물 두번쨰 단계입니다.")]

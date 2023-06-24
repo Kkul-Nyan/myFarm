@@ -38,7 +38,7 @@ public class CropToolbar : OdinMenuEditorWindow
     CropData를 생성하고 경로와 저장되는 이름을 정해줍니다.
     생성이 완료되고나면 안에 데이터를 한번 리셋해줍니다.
     */
-    public class CreateNewCropData : CropData{
+    public class CreateNewCropData{
         public CreateNewCropData(){
             cropData = ScriptableObject.CreateInstance<CropData>(); 
             
@@ -48,7 +48,7 @@ public class CropToolbar : OdinMenuEditorWindow
 
         [Button("Add New Crop")]
         private void CreateNewData(){
-            AssetDatabase.CreateAsset(cropData, "Assets/DataAsset/CropData/" + cropData.name + ".asset");
+            AssetDatabase.CreateAsset(cropData, "Assets/DataAsset/CropData/" + cropData.cropName + ".asset");
             AssetDatabase.SaveAssets();
 
             cropData = ScriptableObject.CreateInstance<CropData>(); 
