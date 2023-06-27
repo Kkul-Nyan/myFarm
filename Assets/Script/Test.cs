@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Path;
+using Pathfind;
 public class Test : MonoBehaviour
 {
+    /*
     float time = 0;
     Vector3 targetposition;
     int count = 0;
@@ -23,7 +24,7 @@ public class Test : MonoBehaviour
         targetposition = new Vector3(Path.instance.FinalNodeList[count].x, Path.instance.FinalNodeList[count].y);
      }
     
-    /*
+    
     IEnumerator MovePos(){
         if(time <1){
             time += Time.deltaTime;

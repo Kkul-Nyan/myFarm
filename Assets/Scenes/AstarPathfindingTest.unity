@@ -467,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 190298242}
-  - component: {fileID: 190298243}
+  - component: {fileID: 190298245}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -490,7 +490,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &190298243
+--- !u!114 &190298245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,15 +499,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 190298240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4bba979f3d548ea96accc7e63e31c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d04969899ad64571b29789d54ab2521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bottomLeft: {x: 0, y: 0}
   topRight: {x: 3, y: 3}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 3, y: 3}
-  FinalNodeList: []
-  allowDiagonal: 0
+  allowDiagonal: 1
   dontCrossCorner: 0
 --- !u!1 &245048451
 GameObject:
@@ -519,6 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245048453}
   - component: {fileID: 245048452}
+  - component: {fileID: 245048454}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -554,6 +552,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245048454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245048451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfa2b4d438fd47f99c56ce1c81b9808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &281123451
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +999,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 0, y: 1, z: 0}
+  - first: {x: 1, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -1002,10 +1012,10 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 7afa0b544a1c44d2da7811933fe14a61, type: 2}
+    m_Data: {fileID: 11400000, guid: 06cd459393ab847f186a94db5f553b92, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 2
-    m_Data: {fileID: -189938698, guid: 11005ca422fd04661a3c52bddb67811f, type: 3}
+    m_Data: {fileID: 630883045, guid: 11005ca422fd04661a3c52bddb67811f, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -1032,7 +1042,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 1, y: 3, z: 1}
+  m_Size: {x: 2, y: 3, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -1364,9 +1374,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 190298243}
-        m_TargetAssemblyTypeName: Path, Assembly-CSharp
-        m_MethodName: PathFinding
+      - m_Target: {fileID: 245048454}
+        m_TargetAssemblyTypeName: PlayerPathfinding, AstarPathFind
+        m_MethodName: Check
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
