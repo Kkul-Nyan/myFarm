@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 [System.Serializable]
 public class Node
 {
@@ -19,6 +20,8 @@ public class Node
 
 public class Path : MonoBehaviour
 {
+    
+    
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
     public List<Node> FinalNodeList;
     public bool allowDiagonal, dontCrossCorner;
@@ -28,6 +31,14 @@ public class Path : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     
+    public static Path instance;
+    private void Awake() {
+        if(instance != null){
+            Destroy(this);
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void PathFinding()
     {
