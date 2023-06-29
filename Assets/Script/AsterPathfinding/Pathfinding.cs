@@ -33,6 +33,7 @@ namespace Pathfind{
         static Node[,] NodeArray;
         static Node StartNode, TargetNode, CurNode;
         static List<Node> OpenList, ClosedList;
+        public static List<LayerMask> blockedLayerMasks = new List<LayerMask>();
 
         public static void SearchPathfinding(Vector2Int startXY, Vector2Int targetXY)
         {
@@ -42,16 +43,20 @@ namespace Pathfind{
             sizeX = topRight.x - bottomLeft.x + 1;
             sizeY = topRight.y - bottomLeft.y + 1;
             NodeArray = new Node[sizeX, sizeY];
+           
 
-            for (int i = bottomLeft.x; i < sizeX; i++)
+            for (int i = 0; i < sizeX; i++)
             {
-                for (int j = bottomLeft.y; j < sizeY; j++)
+                for (int j = 0; j < sizeY; j++)
                 {
                     bool isWall = false;
-                    foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.4f))
-                        if (col.gameObject.layer == LayerMask.NameToLayer("Wall")) isWall = true;
+                    foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(bottomLeft.x + i ,bottomLeft.y + j), 0.4f))
+                        for(int k = 0; k < blockedLayerMasks.Count; k++){
+                            Debug.Log("Pathfinding blockedlayer : " + col);
+                            if (col != null) isWall = true;
+                        }
 
-                    NodeArray[i, j] = new Node(isWall, i, j);
+                    NodeArray[i, j] = new Node(isWall,bottomLeft.x + i,bottomLeft.y + j);
                 }
             }
             

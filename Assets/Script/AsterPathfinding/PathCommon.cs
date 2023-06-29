@@ -10,13 +10,18 @@ namespace Pathfind{
         public Vector2Int topRight;
         public bool allowDiagonal;
         public bool dontCrossCorner;
+        public List<LayerMask> blockedLayerMasks = new List<LayerMask>();
         
     
-        private void Awake() {
+        private void Start() {
             Pathfinding.allowDiagonal = allowDiagonal;
             Pathfinding.dontCrossCorner = dontCrossCorner;
             Pathfinding.bottomLeft = bottomLeft;
             Pathfinding.topRight = topRight;
+            foreach( LayerMask layer in blockedLayerMasks){
+                Pathfinding.blockedLayerMasks.Add(layer);
+                Debug.Log(layer);
+            }
         }
     }
 }
