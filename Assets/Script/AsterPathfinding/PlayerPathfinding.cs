@@ -52,7 +52,13 @@ public class PlayerPathfinding : MonoBehaviour
     public void Check()
     {
         isMove = false;
-        playerPos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        if(finalNode != null){
+            playerPos = new Vector2Int(finalNode.x, finalNode.y);
+        }
+        else{
+            playerPos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        }
+        
         Pathfinding.SearchPathfinding(playerPos, targetPos);
         PathNode = Pathfinding.FinalNodeList;
         count = 0;
@@ -122,6 +128,7 @@ public class PlayerPathfinding : MonoBehaviour
             {
                 if (count == PathNode.Count - 1)
                 {
+                    Reset();
                     Debug.Log("도착");
                     isMove = false;
                     return;
