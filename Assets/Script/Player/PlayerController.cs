@@ -2,20 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Pathfind;
 
 public class PlayerController : MonoBehaviour
 {
     
     PlayerStateContext playerStateContext;
     IPlayerState idleState, moveState, workState;
+    private Vector2 targetPosition;
+    public Vector2 TargetPosition{
+        get{return targetPosition;}
+        set{targetPosition = value;}
+    }
+
+    public Tilemap tilemap{get; set;}
+    private Node targetPos;
+    public Node TargetPos{
+        get{return targetPos;}
+        set{targetPos = value;}
+    }
+    Node finalNode;
+    public Node FinalNode{
+        get{return finalNode;}
+        set{finalNode = value;}
+    }
+
+    List<Node> pathNode;
+    public List<Node> PathNode{
+        get{return pathNode;}
+        set{pathNode = value;}
+    }
+
     public WorkType currentWorkType{
         get; set;
     }
 
-    float speed = 1f;
-    public float Speed{
-        get{return speed;}
-        set{speed = value;}
+    float playerMoveSpeed = 2f;
+    public float PlayerMoveSpeed{
+        get{return playerMoveSpeed;}
+        set{playerMoveSpeed = value;}
     }
 
     Camera mainCamera;
@@ -49,15 +74,13 @@ public class PlayerController : MonoBehaviour
         set{isMoving = value;}
     }
 
-    public LayerMask obstacleLayer{get; set;}// 이동 불가능한 타일맵의 레이어
-    private Vector2 targetPosition; // 클릭한 위치
-    public Tilemap tilemap{get; set;}
+ 
+
 
     private void Awake() {
         anim = GetComponentInChildren<Animator>();
         player = GetComponent<Transform>();
         playerCharactor = GetComponentInChildren<SpriteRenderer>();
-        obstacleLayer = LayerMask.GetMask("Obstacle"); 
         tilemap = FindFirstObjectByType<Tilemap>();
     }
 

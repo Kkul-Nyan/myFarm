@@ -53,8 +53,6 @@ namespace Pathfind{
                     foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(bottomLeft.x + i ,bottomLeft.y + j), 0.4f))
                         for(int k = 0; k < blockedLayerMasks.Count; k++){
                             int colbitlayer = 1 << col.gameObject.layer;
-                            Debug.Log("Pathfinding col's blockedlayer : " + colbitlayer);
-                            Debug.Log("PathblockedLayerMask : " + blockedLayerMasks[k].value);
                             if (colbitlayer == blockedLayerMasks[k].value){
                                 isWall = true;
                             }
