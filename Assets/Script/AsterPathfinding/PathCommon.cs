@@ -20,7 +20,7 @@ namespace Pathfind{
             Pathfinding.topRight = topRight;
             foreach( LayerMask layer in blockedLayerMasks){
                 Pathfinding.blockedLayerMasks.Add(layer);
-                Debug.Log(layer);
+                Debug.Log("Layer : " + layer.value);
             }
         }
     }

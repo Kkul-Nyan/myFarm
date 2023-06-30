@@ -709,7 +709,7 @@ MonoBehaviour:
   bottomLeft: {x: -2, y: -2}
   topRight: {x: 3, y: 3}
   allowDiagonal: 1
-  dontCrossCorner: 0
+  dontCrossCorner: 1
   blockedLayerMasks:
   - serializedVersion: 2
     m_Bits: 8
@@ -722,7 +722,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 245048453}
-  - component: {fileID: 245048452}
   - component: {fileID: 245048454}
   m_Layer: 0
   m_Name: Player
@@ -731,18 +730,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &245048452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245048451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a27562efb72443095e8c77993f0ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &245048453
 Transform:
   m_ObjectHideFlags: 0
@@ -751,7 +738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245048451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

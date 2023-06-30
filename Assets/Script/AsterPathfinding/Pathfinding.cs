@@ -52,8 +52,13 @@ namespace Pathfind{
                     bool isWall = false;
                     foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(bottomLeft.x + i ,bottomLeft.y + j), 0.4f))
                         for(int k = 0; k < blockedLayerMasks.Count; k++){
-                            Debug.Log("Pathfinding blockedlayer : " + col);
-                            if (col != null) isWall = true;
+                            int colbitlayer = 1 << col.gameObject.layer;
+                            Debug.Log("Pathfinding col's blockedlayer : " + colbitlayer);
+                            Debug.Log("PathblockedLayerMask : " + blockedLayerMasks[k].value);
+                            if (colbitlayer == blockedLayerMasks[k].value){
+                                isWall = true;
+                            }
+                        
                         }
 
                     NodeArray[i, j] = new Node(isWall,bottomLeft.x + i,bottomLeft.y + j);
@@ -63,6 +68,7 @@ namespace Pathfind{
 
             // 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
             StartNode = NodeArray[startPos.x - bottomLeft.x, startPos.y - bottomLeft.y];
+            Debug.Log("StartNode : "+ StartNode.isWall + ", "+ StartNode.x +", "+ StartNode.y);
             TargetNode = NodeArray[targetPos.x - bottomLeft.x, targetPos.y - bottomLeft.y];
 
             OpenList = new List<Node>() { StartNode };
@@ -70,8 +76,8 @@ namespace Pathfind{
             FinalNodeList = new List<Node>();
 
             
-            while (OpenList.Count > 0)
-            {
+                while (OpenList.Count > 0)
+                {
                 // 열린리스트 중 가장 F가 작고 F가 같다면 H가 작은 걸 현재노드로 하고 열린리스트에서 닫힌리스트로 옮기기
                 CurNode = OpenList[0];
                 for (int i = 1; i < OpenList.Count; i++)
