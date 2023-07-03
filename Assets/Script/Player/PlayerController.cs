@@ -43,12 +43,6 @@ public class PlayerController : MonoBehaviour
         set{playerMoveSpeed = value;}
     }
 
-    Camera mainCamera;
-    public Camera MainCamera{
-        get{return mainCamera;}
-        set{mainCamera = value;}
-    }
-
     Animator anim; 
     public Animator Anim{
         get{return anim;}
