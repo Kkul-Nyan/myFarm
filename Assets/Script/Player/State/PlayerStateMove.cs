@@ -15,6 +15,7 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
     bool left;
     bool right;
 
+    //총 변수가 8개 나와야 한다.
     float playerMoveX;
     float playerMoveY;
 
