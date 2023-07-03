@@ -127,6 +127,7 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
             {
                 if (count == controller.PathNode.Count - 1)
                 {
+                    ResetAnimation();
                     Reset();
                     Debug.Log("도착");
                     controller.FinalNode = null;
@@ -137,17 +138,57 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
                 {
                     count++;
                     controller.TargetPosition = new Vector3(controller.PathNode[count].x, controller.PathNode[count].y);
+                    Debug.Log("PathNode.xy : " + controller.PathNode[count].x + ", "+ controller.PathNode[count].y + "Player.xy : " + controller.transform.position.x + ", " + controller.transform.position.y);
+                    MoveAnimation();
                 }
             }
         }
     }
 
     void MoveAnimation(){
-        if(controller.transform.position.x - controller.PathNode[count].x > 0){}
-        if(controller.transform.position.x - controller.PathNode[count].x > 0){}
-        if(controller.transform.position.x - controller.PathNode[count].x > 0){}
-        if(controller.transform.position.x - controller.PathNode[count].x > 0){}
-        
+        ResetAnimation();
+        //우상
+        if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x > 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y > 0){
+            controller.Anim.SetBool("Right", true);
+            controller.PlayerCharactor.flipX = true;
+        }
+        //우하
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x > 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y < 0){
+            controller.Anim.SetBool("Right", true);
+            controller.PlayerCharactor.flipX = true;
+        }
+        //좌상
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x < 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y > 0){
+            controller.Anim.SetBool("Right", true);
+        }
+        //좌하
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x < 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y < 0){
+            controller.Anim.SetBool("Right", true);
+        }
+        //우
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x > 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y == 0){
+            controller.Anim.SetBool("Right", true);  
+            controller.PlayerCharactor.flipX = true;
+        }
+        //좌
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x < 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y == 0){
+            controller.Anim.SetBool("Right", true);
+        }
+        //상
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x == 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y > 0){
+            controller.Anim.SetBool("Up", true);
+        }
+        //하
+        else if(Mathf.RoundToInt(controller.transform.position.x) - controller.PathNode[count].x == 0 && Mathf.RoundToInt(controller.transform.position.y) - controller.PathNode[count].y < 0){
+            controller.Anim.SetBool("Down", true);
+        }   
+    }
+
+    void ResetAnimation(){
+        controller.Anim.SetBool("Right", false);
+        controller.Anim.SetBool("Up", false);
+        controller.Anim.SetBool("Down", false);
+        controller.PlayerCharactor.flipX = false;
     }
 
     //기즈모를 통해 플레이어가 움직이는 경로를 확인합니다. 경로가 존재할때만 기즈모를 그립니다.    
@@ -159,6 +200,7 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
         for (int i = 0; i < controller.PathNode.Count - 1; i++)
         {
             Gizmos.DrawLine(new Vector2(controller.PathNode[i].x, controller.PathNode[i].y), new Vector2(controller.PathNode[i + 1].x, controller.PathNode[i + 1].y));
+ 
         }
     }
 }
