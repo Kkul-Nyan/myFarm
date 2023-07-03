@@ -144,7 +144,7 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
             }
         }
     }
-
+    // 애니메이션을 통제합니다. 상하좌우대각선 총 8개의 애니메이션을 통제합니다.
     void MoveAnimation(){
         ResetAnimation();
         //우상
@@ -183,7 +183,7 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
             controller.Anim.SetBool("Down", true);
         }   
     }
-
+    //애니메이션동작을 모두 초기화합니다.
     void ResetAnimation(){
         controller.Anim.SetBool("Right", false);
         controller.Anim.SetBool("Up", false);

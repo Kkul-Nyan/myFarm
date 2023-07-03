@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         get; set;
     }
 
-    float playerMoveSpeed = 2f;
+    float playerMoveSpeed = 3f;
     public float PlayerMoveSpeed{
         get{return playerMoveSpeed;}
         set{playerMoveSpeed = value;}
