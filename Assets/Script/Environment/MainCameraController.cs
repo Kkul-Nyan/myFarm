@@ -10,6 +10,7 @@ public class MainCameraController : MonoBehaviour
 
     public float cameraSpeed = 5f;
     public float screenEdgeBorder = 25f;
+    public float cameraSize;
     private void Awake() {
         mainCamera = GetComponent<Camera>();
         CheckBoundary();
@@ -65,6 +66,10 @@ public class MainCameraController : MonoBehaviour
 
         // 카메라 이동 적용
         transform.position += cameraMovement * Time.deltaTime;
+    }
+
+    void CameraSize(){
+        mainCamera.orthographicSize = cameraSize;
     }
 
 
