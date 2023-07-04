@@ -20,10 +20,9 @@ public class TitleUIManager : MonoBehaviour
     private void Awake() {
         titleCanvas = GameObject.Find("TitleGroup").GetComponent<CanvasGroup>();
         loginCanvas = GameObject.Find("LoginGroup").GetComponent<CanvasGroup>();
-        loginCanvas.gameObject.SetActive(false);
-
         titleDotween = titleCanvas.GetComponent<DOTweenAnimation>();
         loginDotween = loginCanvas.GetComponent<DOTweenAnimation>();
+        loginCanvas.gameObject.SetActive(false);
     }
     private void Update() {
         TouchToPlay();
@@ -35,11 +34,11 @@ public class TitleUIManager : MonoBehaviour
             CheckToken();
             if(hasToken == true){
                 Debug.Log("Login!");
-                Invoke("PlayGame",3);
+                Invoke("PlayGame",2);
             }
             
         }
-        if(titleCanvas.alpha <= 0){
+        if(titleCanvas.alpha <= 0 && hasToken == false){
             titleCanvas.gameObject.SetActive(false);
             loginCanvas.gameObject.SetActive(true);
             loginDotween.DOPlayAllById("CanvasIn");
@@ -48,7 +47,7 @@ public class TitleUIManager : MonoBehaviour
     }
 
     bool CheckToken(){
-        hasToken = false;
+        hasToken = true;
         return hasToken;
     }
 
