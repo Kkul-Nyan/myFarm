@@ -10,15 +10,6 @@ public class PlayerStateMove : MonoBehaviour, IPlayerState
     Vector2Int targetPos;
     Vector3 clickPosition;
 
-    bool up;
-    bool down;
-    bool left;
-    bool right;
-
-    //총 변수가 8개 나와야 한다.
-    float playerMoveX;
-    float playerMoveY;
-
     int count = 0;
     bool isMove = false;
 
